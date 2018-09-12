@@ -11,11 +11,11 @@ const logger = log4js.getLogger('cheese');
 const config = require('../config/config.default');
 const routerJs = require('../app/router');
 const path = require('path');
+const angelWebpack = require('../lib/angel-webpack');
+
 let webpackConfig = require('../assets/webpack.config.js');
 const webpack = require('webpack');
 
-//处理webpack环境变量问题
-webpackConfig.mode = config.env.NODE_ENV;
 //配置日志
 // log4js.configure('config/log4js.json');
 
@@ -73,13 +73,14 @@ config.static = config.static ? config.static : {};
 // 静态资源
 app.use(koaStatic(config.root, config.static));
 
-//webpack项目
-const compiler = webpack(webpackConfig);
 
-const devMiddleware = require('koa-webpack-dev-middleware')(compiler, config.webpack.options);
-const hotMiddleware = require('koa-webpack-hot-middleware')(compiler, config.webpack.options);
-app.use(devMiddleware);
-app.use(hotMiddleware);
+
+//fork一个新的进程，用于启动webpack
+new angelWebpack({
+  url: path.join(process.cwd(), 'assets/webpack.config.js'), //webpack配置地址
+  app,//koa实例化
+  configUrl: path.join(process.cwd(), 'config/config.default.js') //默认读取config/config.default.js
+});
 
 // 启动服务器
 app.listen(port, () => {

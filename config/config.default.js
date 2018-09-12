@@ -18,7 +18,7 @@ module.exports = {
   },
   static: path.join(process.cwd(), 'app/static'),
   webpack: {
-    option: {
+    options: {
       // all options optional
    
       noInfo: false,
@@ -27,22 +27,23 @@ module.exports = {
       quiet: false,
       // display nothing to the console
    
-      lazy: true,
+      lazy: false,
       // switch into lazy mode
       // that means no watching, but recompilation on every request
    
       watchDelay: 300,
       // delay after change (only lazy: false)
    
-      publicPath: "/assets/",
+      publicPath: "/",
       // public path to bind the middleware to
       // use the same as in webpack
    
       headers: { "X-Custom-Header": "yes" },
       // custom headers
-   
+      //https://www.webpackjs.com/configuration/stats/
       stats: {
         colors: true,
+        builtAt: true,
       },
       // options for formating the statistics
     }

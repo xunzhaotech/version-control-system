@@ -10,7 +10,6 @@ let htmlOut = null;
 let isdev = true;
 output = path.resolve(__dirname, '../app/static/dist');
 htmlOut = path.join(__dirname,'../app/view/index.html');
-
 if(process.env.NODE_ENV !== "development") {
   isdev = false;
 }
