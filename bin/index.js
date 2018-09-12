@@ -1,20 +1,19 @@
 const Koa = require('koa');
 const app = new Koa();
 const log4js = require('log4js');
-const KoaRouter = require('koa-router');
 const koaNunjucks = require('koa-nunjucks-2');
 const koaStatic = require('koa-static');
 const colors = require('colors');
 const dayjs = require('dayjs')
+const KoaRouter = require('koa-router');
 const router = new KoaRouter();
 const logger = log4js.getLogger('cheese');
 const config = require('../config/config.default');
 const routerJs = require('../app/router');
 const path = require('path');
 const angelWebpack = require('../lib/angel-webpack');
+const cluster = require('cluster');
 
-let webpackConfig = require('../assets/webpack.config.js');
-const webpack = require('webpack');
 
 //配置日志
 // log4js.configure('config/log4js.json');
@@ -43,7 +42,7 @@ app.use(koaNunjucks({
 app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.get('X-Response-Time');
-  console.log(`${ctx.method}`.green,` ${ctx.url} - `,`${rt}`.green);
+  console.log(`angel ${ctx.method}`.green,` ${ctx.url} - `,`${rt}`.green);
 });
 
 // 响应时间
@@ -73,16 +72,15 @@ config.static = config.static ? config.static : {};
 // 静态资源
 app.use(koaStatic(config.root, config.static));
 
-
-
 //fork一个新的进程，用于启动webpack
 new angelWebpack({
   url: path.join(process.cwd(), 'assets/webpack.config.js'), //webpack配置地址
-  app,//koa实例化
   configUrl: path.join(process.cwd(), 'config/config.default.js') //默认读取config/config.default.js
 });
 
-// 启动服务器
-app.listen(port, () => {
-  console.log(`当前服务器已经启动,请访问`,`http://127.0.0.1:${port}`.green);
-});
+if (cluster.isWorker) {
+  // 启动服务器
+  app.listen(port, () => {
+    console.log(`当前服务器已经启动,请访问`,`http://127.0.0.1:${port}`.green);
+  });
+}

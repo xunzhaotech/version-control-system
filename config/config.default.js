@@ -18,6 +18,9 @@ module.exports = {
   },
   static: path.join(process.cwd(), 'app/static'),
   webpack: {
+    listen: {
+      port: 8888
+    },
     options: {
       // all options optional
    
