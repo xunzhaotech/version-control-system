@@ -12,7 +12,7 @@ class Home extends React.Component {
 
   startIssue() {
     $.post('/system/api/issue/start',(json) => {
-      console.log(json,'json')
+      console.log(json,'json11')
     })
   }
 
