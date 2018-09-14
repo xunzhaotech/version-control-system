@@ -5,8 +5,14 @@ const fs = require('fs');
 const path = require('path');
 const formidable = require("formidable");
 const { spawn, fork, exec } = require('child_process');
-const cluster = require('cluster');
 const sendToWormhole = require('stream-wormhole');
+const mongodb = require('../tool/mongodb');
+
+mongodb({
+  collection: 'guangguang'
+},(db) => {
+  
+});
 
 //解决文件上传
 let fileUpload = (req) => {
@@ -24,17 +30,8 @@ let fileUpload = (req) => {
 * 
 */
 let startFileUnpack = async (fileName, versionPath, version, systemName) => {
- console.log(fileName,'fileName')
  return new Promise((resolve, reject) => {
    let unPack = spawn('tar', ['-x','-v', '-f',fileName],{ cwd: versionPath });
-   // exec(`tar -xvf ${fileName}`, { cwd: versionPath },  (error, stdout, stderr) => {
-   //   if (error) {
-   //     console.error(`exec error: ${error}`);
-   //     return;
-   //   }
-   //   console.log(`成功: ${stdout}`);
-   //   console.log(`stderr: ${stderr}`);
-   // });
    let pid = unPack.pid;
 
    unPack.stdout.on('data', (data) => {

@@ -6,6 +6,7 @@ module.exports = {
   listen: {
     port: 7001
   },
+  mongodb: 'mongodb://106.14.154.107:27017',
   env: {
     NODE_ENV: 'development'
   },
@@ -23,7 +24,6 @@ module.exports = {
     },
     options: {
       // all options optional
-   
       noInfo: false,
       // display no info to console (only warnings and errors)
    

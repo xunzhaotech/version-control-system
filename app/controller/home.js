@@ -9,5 +9,4 @@ module.exports = async (ctx) => {
     rootPath = `http://${ctx.host.split(":")[0]}:${config.webpack.listen.port}`;
   }
   await ctx.render('index', { timestamp, rootPath });
-
 }

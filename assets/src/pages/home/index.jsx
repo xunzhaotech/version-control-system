@@ -30,7 +30,7 @@ class Home extends React.Component {
         if (info.file.status === 'done') {
           message.success(info.file.response.message)
         } else if (info.file.status === 'error') {
-          message.error(`${info.file.name} file upload failed.`);
+          message.error(`${info.file.name} file 22222222222222 failed.22222`);
         }
       },
     };
@@ -38,7 +38,7 @@ class Home extends React.Component {
       <div className="home">
         <Upload {...props}>
           <Button>
-            <Icon type="upload" /> 点击上传22ssss
+            <Icon type="upload" /> 点击上传
           </Button>
         </Upload>
         <Button onClick={this.startIssue.bind(this)}>发布</Button>
