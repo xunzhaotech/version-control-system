@@ -14,8 +14,8 @@ module.exports = (options,callback) => {
     const adminDb = client.db(dbName).admin();
 
     adminDb.listDatabases(function(err, dbs) {
-      console.log(dbs,'dbs');
       assert.equal(null, err);
+      callback(adminDb);
       assert.ok(dbs.databases.length > 0);
       client.close();
     });
