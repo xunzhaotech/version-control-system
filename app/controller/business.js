@@ -1,19 +1,34 @@
 const config = require('../../config/config.default');
 const system = require('../service/system');
+const { reg } = require('../service/user');
 const path = require('path');
 const { getPath } = require('../tool/index');
 
 
 /**
- * @api {/system/api/issue/file}
+ * @api /system/api/issue/file
  * @param {file}
- * @method {post}
+ * @method post
  *   
  */
 exports.unpack = async (ctx) => {
   const url = await getPath(ctx);
 
   ctx.body = await system.unpack(
+    ctx.req,
+    url
+  );
+}
+
+/**
+ * @api /system/api/user/reg
+ * @param {Func} ctx 
+ * @method POST
+ */
+exports.reg = async (ctx) => {
+  const url = await getPath(ctx);
+
+  ctx.body = await reg(
     ctx.req,
     url
   );

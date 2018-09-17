@@ -2,24 +2,40 @@
 const MongoClient = require('mongodb').MongoClient;
 const config = require('../../config/config.default');
 const assert = require('assert');
+const mongoose = require('mongoose');
 
 
-module.exports = (options,callback) => {
-  let url = config.mongodb;
-  options = options ? options : {};
-  const dbName = options.Collection;
-
-  MongoClient.connect(url,function(err,client){
-    assert.equal(null,err);
-    const adminDb = client.db(dbName).admin();
-
-    adminDb.listDatabases(function(err, dbs) {
-      assert.equal(null, err);
-      callback(client);
-      assert.ok(dbs.databases.length > 0);
-      client.close();
+module.exports = (callback) => {
+  return new Promise((resolve,reject) => {
+    mongoose.connect(config.mongodb); 
+    let db = mongoose.connection;
+    db.on('error', console.error.bind(console, '连接失败'));
+    db.once('open', function() {
+      console.log('已连接')
+      resolve(mongoose);
+      // //创建一个场景
+      // let kittySchema = mongoose.Schema({ name: String });
+      // kittySchema.methods.speak = () => {
+      //   this.word = '我是一只猫';
+      //   console.log(this.word,'----')
+      // }
+      // let Kitten = mongoose.model('Kitten', kittySchema);
+      // var fluffy = new Kitten({ name: 'fluffy' });
+      // fluffy.save((err, fluffy) => {
+      //   if(err) {
+      //     console.log('保存到数据库失败',err);
+      //   }
+    
+      //   fluffy.speak();
+    
+      // })
+      // Kitten.find(function (err, kittens) {
+      //   if (err) return console.error(err);
+      //   console.log(kittens);
+      // })
     });
-  });
+  })
+  
 
 } 
 

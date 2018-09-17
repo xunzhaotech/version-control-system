@@ -6,13 +6,36 @@ const path = require('path');
 const formidable = require("formidable");
 const { spawn, fork, exec } = require('child_process');
 const sendToWormhole = require('stream-wormhole');
-const mongodb = require('../tool/mongodb');
+const config = require('../../config/config.default');
+const mongoose = require('../tool/mongodb');
 
-mongodb({
-  collection: 'guangguang'
-},(db) => {
-  console.log(db.collection,'------')
-});
+// mongoose.connect(config.mongodb); 
+// let db = mongoose.connection;
+// db.on('error', console.error.bind(console, '连接失败'));
+// // db.once('open', function() {
+// // we're connected!
+//   console.log('已连接')
+  // //创建一个场景
+  // let kittySchema = mongoose.Schema({ name: String });
+  // kittySchema.methods.speak = () => {
+  //   this.word = '我是一只猫';
+  //   console.log(this.word,'----')
+  // }
+  // let Kitten = mongoose.model('Kitten', kittySchema);
+  // var fluffy = new Kitten({ name: 'fluffy' });
+  // fluffy.save((err, fluffy) => {
+  //   if(err) {
+  //     console.log('保存到数据库失败',err);
+  //   }
+
+  //   fluffy.speak();
+
+  // })
+  // Kitten.find(function (err, kittens) {
+  //   if (err) return console.error(err);
+  //   console.log(kittens);
+  // })
+// });
 
 //解决文件上传
 let fileUpload = (req) => {
@@ -43,17 +66,18 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
    });
    
    unPack.on('close', (code) => {
-     let arr = fs.readFileSync(path.join(__dirname, '../pid/list.json'),{
-       encoding: 'UTF8'
-     });
-     arr = arr ? JSON.parse(arr) : [];
-     arr.push({
-       version: version,
-       name: systemName,
-       pid: pid
-     });
+    //  let arr = fs.readFileSync(path.join(__dirname, '../pid/list.json'),{
+    //    encoding: 'UTF8'
+    //  });
+    //  arr = arr ? JSON.parse(arr) : [];
+    //  arr.push({
+    //    version: version,
+    //    name: systemName,
+    //    pid: pid
+    //  });
      
-     fs.writeFileSync(path.join(__dirname, '../pid/list.json'), JSON.stringify(arr));
+    //  fs.writeFileSync(path.join(__dirname, '../pid/list.json'), JSON.stringify(arr));
+    let mongoose = mongoose();
      resolve();
    });
  })
