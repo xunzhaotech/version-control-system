@@ -11,7 +11,7 @@ const mongodb = require('../tool/mongodb');
 mongodb({
   collection: 'guangguang'
 },(db) => {
-  console.log(db.guangguang,'------')
+  console.log(db.collection,'------')
 });
 
 //解决文件上传

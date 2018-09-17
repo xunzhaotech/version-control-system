@@ -15,7 +15,7 @@ module.exports = (options,callback) => {
 
     adminDb.listDatabases(function(err, dbs) {
       assert.equal(null, err);
-      callback(adminDb);
+      callback(client);
       assert.ok(dbs.databases.length > 0);
       client.close();
     });
