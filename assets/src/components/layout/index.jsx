@@ -20,6 +20,12 @@ class LayoutContent extends React.Component {
   toggle() {
     this.setState({
       collapsed: !this.state.collapsed,
+    }, () => {
+      if(this.state.collapsed) {
+        this.logo.innerHTML = '<h1 class="text iconfont icon--angel"></h1>';
+      } else {
+        this.logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>';
+      }
     });
   }
 
@@ -28,8 +34,8 @@ class LayoutContent extends React.Component {
   }
 
   componentDidMount() {
-    let logo = document.getElementsByClassName('logo')[0];
-    logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>'
+    this.logo = document.getElementsByClassName('logo')[0];
+    this.logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>';
     this.setState({ hash: hash || 'view' });
   }
 
@@ -38,6 +44,10 @@ class LayoutContent extends React.Component {
     hash = hash.split('/')[1];
     hash = hash ? hash.split('?')[0] : hash;
     this.setState({ hash })
+  }
+
+  onCollapse(value) {
+    console.log(value,'>>>')
   }
 
   render() {
