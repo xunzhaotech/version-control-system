@@ -13,7 +13,7 @@ class LayoutContent extends React.Component {
   constructor() {
     super();
     this.state = {
-      collapsed: false,
+      collapsed: false
     };
   }
 
@@ -28,7 +28,9 @@ class LayoutContent extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ hash });
+    let logo = document.getElementsByClassName('logo')[0];
+    logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>'
+    this.setState({ hash: hash || 'view' });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +50,7 @@ class LayoutContent extends React.Component {
       )
     })
     return (
-      <Layout className='layout'>
+      <Layout className='layout' >
         <Sider
           trigger={null}
           collapsible
