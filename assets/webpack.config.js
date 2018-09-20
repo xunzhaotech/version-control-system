@@ -91,8 +91,9 @@ let config = {
   
   resolve: {
     alias: {
-      Utils: path.resolve(__dirname + '/src/utils'),
+      utils: path.resolve(__dirname + '/src/utils'),
       components: path.resolve(__dirname + '/src/components'),
+      config: path.resolve(__dirname + '/src/config')
     },
     extensions: ['.js','.jsx']
   },

@@ -18,6 +18,7 @@ module.exports = {
     gzip: true, //当客户端支持gzip时，如果存在扩展名为.gz的请求文件，请尝试自动提供文件的gzip压缩版本。默认为true。
   },
   static: path.join(process.cwd(), 'app/static'),
+  compress: { threshold: 2048 },//koa-compress 配置gizp
   webpack: {
     listen: {
       port: 8888

@@ -1,8 +1,13 @@
 import React from 'React';
 import { Layout, Menu, Icon } from 'antd';
 import './index.less';
+import menuConfig from 'config/menu.js';
+
 const { Header, Sider, Content } = Layout;
 
+let hash = location.hash;
+hash = hash.split('/')[1];
+hash = hash ? hash.split('?')[0] : hash;
 
 class LayoutContent extends React.Component {
   constructor() {
@@ -18,7 +23,30 @@ class LayoutContent extends React.Component {
     });
   }
 
+  onClickMenu(obj) {
+    location.hash = `#${obj.key}`;
+  }
+
+  componentDidMount() {
+    this.setState({ hash });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    hash = location.hash;
+    hash = hash.split('/')[1];
+    hash = hash ? hash.split('?')[0] : hash;
+    this.setState({ hash })
+  }
+
   render() {
+    const MenuItem = menuConfig.map((item, index) => {
+      return (
+        <Menu.Item key={item.key} key={item.key}>
+          <Icon type={item.icon} />
+          <span>{item.title}</span>
+        </Menu.Item>
+      )
+    })
     return (
       <Layout className='layout'>
         <Sider
@@ -27,23 +55,8 @@ class LayoutContent extends React.Component {
           collapsed={this.state.collapsed}
         >
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="0">
-              <Icon type="appstore" />
-              <span>应用部署</span>
-            </Menu.Item>
-            <Menu.Item key="1">
-              <Icon type="deployment-unit" />
-              <span>应用列表</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="file-text" />
-              <span>日志服务</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="area-chart" />
-              <span>总览</span>
-            </Menu.Item>
+          <Menu theme="dark" mode="inline" selectedKeys={[this.state.hash]} onClick={this.onClickMenu.bind(this)}>
+            {MenuItem}
           </Menu>
         </Sider>
         <Layout>
