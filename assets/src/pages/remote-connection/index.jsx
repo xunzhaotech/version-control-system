@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'antd';
+
 import './index.less';
 
 class View extends Component {
@@ -10,9 +11,9 @@ class View extends Component {
     };
   }
   render() {
+
     return (
-      <div className='view-content'>
-        远程连接
+      <div className='remote-connection'>
       </div>
     )
   }

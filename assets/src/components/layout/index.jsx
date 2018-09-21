@@ -13,7 +13,7 @@ class LayoutContent extends React.Component {
   constructor() {
     super();
     this.state = {
-      collapsed: false
+      collapsed: true
     };
   }
 
@@ -21,11 +21,7 @@ class LayoutContent extends React.Component {
     this.setState({
       collapsed: !this.state.collapsed,
     }, () => {
-      if(this.state.collapsed) {
-        this.logo.innerHTML = '<h1 class="text iconfont icon--angel"></h1>';
-      } else {
-        this.logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>';
-      }
+      this.logoChange();
     });
   }
 
@@ -33,9 +29,17 @@ class LayoutContent extends React.Component {
     location.hash = `#${obj.key}`;
   }
 
+  logoChange() {
+    if(this.state.collapsed) {
+      this.logo.innerHTML = '<h1 class="text iconfont icon--angel"></h1>';
+    } else {
+      this.logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>';
+    }
+  }
+
   componentDidMount() {
     this.logo = document.getElementsByClassName('logo')[0];
-    this.logo.innerHTML = '<h1 class="text iconfont icon--angel">ANGEL</h1>';
+    this.logoChange();
     this.setState({ hash: hash || 'view' });
   }
 
@@ -79,7 +83,7 @@ class LayoutContent extends React.Component {
               onClick={this.toggle.bind(this)}
             />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, overflow: 'initial' }}>
             {this.props.children}
           </Content>
         </Layout>

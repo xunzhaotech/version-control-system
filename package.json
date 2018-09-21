@@ -47,6 +47,7 @@
     "precss": "^3.1.2",
     "stream-wormhole": "^1.1.0",
     "style-loader": "^0.20.3",
+    "web-pty": "^1.2.5",
     "webpack": "^4.17.2"
   },
   "devDependencies": {
