@@ -1,20 +1,30 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 注意版本号 webpack 4 以上版本请下载 @next 版本
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
 const path = require('path');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let output = null;
 let htmlOut = null;
 let isdev = true;
+let pkg = require('./package.json');
+let theme = pkg.theme;
+
 output = path.resolve(__dirname, '../app/static/dist');
 htmlOut = path.join(__dirname,'../app/view/index.html');
 if(process.env.NODE_ENV !== "development") {
   isdev = false;
 }
+let entryBase = [path.join(__dirname,'./src/index.js')];
+let plug = ['lodash'];
+
 let config = {
-  entry: path.join(__dirname,'./src/index.js'),
+  entry: {
+    system: entryBase,
+    plug,
+  },
   output: {
     path: output,
     chunkFilename: `[name].min.js`,
@@ -32,37 +42,38 @@ let config = {
             plugins: [
               ["@babel/transform-runtime"],
               [
-                  "import",
-                  {libraryName: "antd", style: true}
+                "import",
+                {libraryName: "antd", style: true}
               ] 
             ]
           }
         } 
       },
       {
-        test: /\.(less|css)$/,
-        use: ExtractTextPlugin.extract({ 
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
-                }
+        test: /\.(scss|css|less|styl)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
               }
-            },
-            {
-              loader: 'less-loader',
-              options: { 
-                javascriptEnabled: true 
-              } 
             }
-          ]
-        })
+          },
+          {
+            loader: 'less-loader',
+            options: { 
+              javascriptEnabled: true,
+              modifyVars: theme   //antd默认主题样式
+            } 
+          }
+        ],
       },
       {
         test: /\.html$/,
@@ -104,34 +115,45 @@ let config = {
     }),
 
     // 提取样式，生成单独文件
-    new ExtractTextPlugin("styles.css"),
-    // new BrowserSyncPlugin({
-    //   host: '127.0.0.1',
-    //   port: 7002,
-    //   proxy: 'http://127.0.0.1:7001/'
-    // })
-
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: "antd.css"
+    }),
+    new CompressionWebpackPlugin({
+      filename: '[path].gz[query]',// 目标文件名
+      algorithm: 'gzip',// 使用gzip压缩
+      test: new RegExp(
+          '\\.(js|css)$' // 压缩 js 与 css
+      ),
+      threshold: 10240,// 资源文件大于10240B=10kB时会被压缩
+      minRatio: 0.8 // 最小压缩比达到0.8时才会被压缩
+    }),
   ]
-
-//  // 提供静态服务
-//   devServer:{ 
-//     port: 9999,
-//     historyApiFallback: true,
-//     headers: { // 添加头部信息
-//       "X-Custom-Foo": "bar"
-//     },
-//     proxy: { // 请求代理
-//       "/api": {
-//         target: "http://118.31.19.119:8082",
-//         pathRewrite: { '^/api': '' }
-//       },
-//     }
-//   },
-
 }
 
 if(isdev) {
   config.devtool = 'cheap-module-eval-source-map';
+} else {
+  config.optimization = {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false 
+      }),
+    ],
+    splitChunks: {
+      cacheGroups: {
+        utils: { // 抽离自定义公共代码
+          test: /\.jsx$/,
+          chunks: 'all',
+          name: 'utils',
+          minSize: 0 // 只要超出0字节就生成一个新包
+        }
+      }
+      
+    }
+  }
 }
 
 module.exports = config;
