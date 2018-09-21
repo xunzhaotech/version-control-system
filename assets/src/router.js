@@ -11,7 +11,7 @@ function RouterConfig() {
     <HashRouter>
       <Switch>
         <Layout>
-          <Route path="/" exact component={AppList} />
+          <Route path="/" exact component={View} />
           <Route path="/app-list" exact component={AppList} />
           <Route path="/app-deploy" exact component={Deploy} />
           <Route path="/log-server" exact component={LogServer} />
