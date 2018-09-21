@@ -11,7 +11,7 @@ class View extends Component {
   }
   render() {
     return (
-      <div className='remote-connection'>
+      <div className='view-content'>
         远程连接
       </div>
     )
