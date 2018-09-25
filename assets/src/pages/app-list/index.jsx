@@ -40,7 +40,11 @@ class AppList extends Component {
           <Column title="创建时间" dataIndex="createTime" key="createTime" />
           <Column title="更新时间" dataIndex="updateTime" key="updateTime" />
           <Column title="发布人" dataIndex="name" key="name" />
-          <Column title="版本" dataIndex="version" key="version" />
+          <Column title="版本" dataIndex="version" key="version" render={(text) => {
+            return (
+              <Tag color="green">{text}</Tag>
+            )
+          }}/>
           <Column title="action" key="action" render={(text, record) => (
               <span>
                 <a href="javascript:;">启动</a>

@@ -51,7 +51,6 @@ class LayoutContent extends React.Component {
   }
 
   onCollapse(value) {
-    console.log(value,'>>>')
   }
 
   render() {
@@ -83,7 +82,7 @@ class LayoutContent extends React.Component {
               onClick={this.toggle.bind(this)}
             />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, overflow: 'initial' }}>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', overflow: 'initial' }}>
             {this.props.children}
           </Content>
         </Layout>

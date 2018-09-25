@@ -11,8 +11,8 @@ class View extends Component {
   }
   render() {
     return (
-      <div className='remote-connection'>
-        远程连接
+      <div className='view-content'>
+        <iframe frameBorder={0} style={{width: '100%', height: '600px'}} src="https://g.alicdn.com/bizcharts-material/scaffold-monitor-linecharts/0.0.2/index.html#/" frameborder="0"></iframe>
       </div>
     )
   }
