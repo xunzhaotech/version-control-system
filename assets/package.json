@@ -12,6 +12,7 @@
     "autoprefixer": "^9.1.5",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.8.0",
+    "bizcharts": "^3.2.4",
     "browser-sync-webpack-plugin": "^2.2.2",
     "codemirror": "^5.40.2",
     "compression-webpack-plugin": "^2.0.0",
