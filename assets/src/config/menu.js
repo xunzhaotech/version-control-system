@@ -1,6 +1,6 @@
 export default [
   {
-    title: '总览',
+    title: '数据统计',
     key: 'view',
     icon: 'area-chart'
   },

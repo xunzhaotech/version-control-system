@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'antd';
+import Charts from './charts';
 import './index.less';
 
 class View extends Component {
@@ -9,10 +10,21 @@ class View extends Component {
 
     };
   }
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div className='view-content'>
-        <iframe frameBorder={0} style={{width: '100%', height: '600px'}} src="https://g.alicdn.com/bizcharts-material/scaffold-monitor-linecharts/0.0.2/index.html#/" frameborder="0"></iframe>
+        <div className='data-line'>
+          <h3 style={{textAlign: 'center'}}>最近7天访问量统计</h3>
+          <div className='charts-layout'> 
+            <Charts />
+          </div>
+        </div>
+
       </div>
     )
   }
