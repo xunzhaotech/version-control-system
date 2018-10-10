@@ -9,33 +9,7 @@ const sendToWormhole = require('stream-wormhole');
 const config = require('../../config/config.default');
 const mongoose = require('../tool/mongodb');
 
-// mongoose.connect(config.mongodb); 
-// let db = mongoose.connection;
-// db.on('error', console.error.bind(console, '连接失败'));
-// // db.once('open', function() {
-// // we're connected!
-//   console.log('已连接')
-  // //创建一个场景
-  // let kittySchema = mongoose.Schema({ name: String });
-  // kittySchema.methods.speak = () => {
-  //   this.word = '我是一只猫';
-  //   console.log(this.word,'----')
-  // }
-  // let Kitten = mongoose.model('Kitten', kittySchema);
-  // var fluffy = new Kitten({ name: 'fluffy' });
-  // fluffy.save((err, fluffy) => {
-  //   if(err) {
-  //     console.log('保存到数据库失败',err);
-  //   }
-
-  //   fluffy.speak();
-
-  // })
-  // Kitten.find(function (err, kittens) {
-  //   if (err) return console.error(err);
-  //   console.log(kittens);
-  // })
-// });
+mongoose();
 
 //解决文件上传
 let fileUpload = (req) => {
