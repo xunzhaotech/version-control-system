@@ -38,24 +38,6 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
    });
    
    unPack.on('close', (code) => {
-    //  let arr = fs.readFileSync(path.join(__dirname, '../pid/list.json'),{
-    //    encoding: 'UTF8'
-    //  });
-    //  arr = arr ? JSON.parse(arr) : [];
-    //  arr.push({
-    //    version: version,
-    //    name: systemName,
-    //    pid: pid
-    //  });
-     
-    //  fs.writeFileSync(path.join(__dirname, '../pid/list.json'), JSON.stringify(arr));
-    serverInfo.create({
-      version: version,
-      name: systemName,
-      pid: pid,
-      createTime: `${new Date().getTime()}`,
-      status: 0
-    });
     resolve();
    });
  })
@@ -63,7 +45,7 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
 }
 
 //开始部署应用
-let startIssue = (versionPath) => {
+let startIssue = (versionPath,fileName, version) => {
   return new Promise((resolve, reject) => {
     let unPack = spawn('npm', ['start'],{ cwd: versionPath });
     let pid = unPack.pid;
@@ -77,7 +59,38 @@ let startIssue = (versionPath) => {
     });
     unPack.on('close', (code) => {
       console.log('当前版本已部署');
-      resolve();
+      serverInfo.create({
+        version: version,
+        name: fileName,
+        pid: pid,
+        createTime: `${new Date().getTime()}`,
+        status: 1
+      }, (err, data, info) => {
+        if(!err) {
+          resolve();
+        }
+      });
+    })
+  });
+}
+
+//停止服务
+function stopServer() {
+  return new Promise((resolve) => {
+    //查询当前正在运行部署的版本pid
+    serverInfo.findOne({},null,{ sort: {createTime: -1} }, (err, data) => {
+      if(!err) {
+        let pid = data.pid;
+        console.log(pid,'-------------');
+        try {
+          process.kill(pid,(err) => {
+            resolve();
+          })
+        } catch (error) {
+          resolve();
+        }
+        
+      }
     })
   });
 }
@@ -118,7 +131,9 @@ exports.unpack = async (req, url) => {
     //异步把文件流 写入
     await awaitWriteStream(stream.pipe(writeStream));
     await startFileUnpack(`${fileName}.gz`, versionPath, version, name);
-    await startIssue(versionPath);
+    await stopServer();
+    await startIssue(versionPath,fileName,version);
+
     return {
       code: 500,
       data: null,

@@ -8,7 +8,7 @@ module.exports = {
   },
   mongodb: {
     url: 'mongodb://106.14.154.107:27017',
-    name: 'version_control-system'
+    name: 'version_control_system'
   },
   env: {
     NODE_ENV: 'development'
