@@ -7,35 +7,7 @@ const formidable = require("formidable");
 const { spawn, fork, exec } = require('child_process');
 const sendToWormhole = require('stream-wormhole');
 const config = require('../../config/config.default');
-const mongoose = require('../tool/mongodb');
-
-// mongoose.connect(config.mongodb); 
-// let db = mongoose.connection;
-// db.on('error', console.error.bind(console, '连接失败'));
-// // db.once('open', function() {
-// // we're connected!
-//   console.log('已连接')
-  // //创建一个场景
-  // let kittySchema = mongoose.Schema({ name: String });
-  // kittySchema.methods.speak = () => {
-  //   this.word = '我是一只猫';
-  //   console.log(this.word,'----')
-  // }
-  // let Kitten = mongoose.model('Kitten', kittySchema);
-  // var fluffy = new Kitten({ name: 'fluffy' });
-  // fluffy.save((err, fluffy) => {
-  //   if(err) {
-  //     console.log('保存到数据库失败',err);
-  //   }
-
-  //   fluffy.speak();
-
-  // })
-  // Kitten.find(function (err, kittens) {
-  //   if (err) return console.error(err);
-  //   console.log(kittens);
-  // })
-// });
+const { serverInfo } = require('../tool/model.js');
 
 //解决文件上传
 let fileUpload = (req) => {
@@ -77,8 +49,14 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
     //  });
      
     //  fs.writeFileSync(path.join(__dirname, '../pid/list.json'), JSON.stringify(arr));
-    let mongoose = mongoose();
-     resolve();
+    serverInfo.create({
+      version: version,
+      name: systemName,
+      pid: pid,
+      createTime: `${new Date().getTime()}`,
+      status: 0
+    });
+    resolve();
    });
  })
 

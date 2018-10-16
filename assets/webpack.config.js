@@ -106,7 +106,7 @@ let config = {
       components: path.resolve(__dirname + '/src/components'),
       config: path.resolve(__dirname + '/src/config')
     },
-    extensions: ['.js','.jsx']
+    extensions: [".js", ".jsx", ".json"]
   },
   mode: process.env.NODE_ENV,
   plugins: [
