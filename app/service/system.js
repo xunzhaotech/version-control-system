@@ -7,9 +7,7 @@ const formidable = require("formidable");
 const { spawn, fork, exec } = require('child_process');
 const sendToWormhole = require('stream-wormhole');
 const config = require('../../config/config.default');
-const mongoose = require('../tool/mongodb');
-
-mongoose();
+const { serverInfo } = require('../tool/model.js');
 
 //解决文件上传
 let fileUpload = (req) => {
@@ -51,8 +49,14 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
     //  });
      
     //  fs.writeFileSync(path.join(__dirname, '../pid/list.json'), JSON.stringify(arr));
-    let mongoose = mongoose();
-     resolve();
+    serverInfo.create({
+      version: version,
+      name: systemName,
+      pid: pid,
+      createTime: `${new Date().getTime()}`,
+      status: 0
+    });
+    resolve();
    });
  })
 

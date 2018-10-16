@@ -2,6 +2,8 @@ const path = require('path');
 const angelWebpack = require('../lib/angel-webpack');
 const AngelServer = require('../lib/server');
 const cluster = require('cluster');
+//使用mongodb
+require('../app/tool/mongodb.js');
 
 //fork一个新的进程，用于启动webpack
 if(cluster.isMaster) {
