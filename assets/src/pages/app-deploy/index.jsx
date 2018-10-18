@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Upload, message, Button, Skeleton, Switch, Card, Icon, Avatar } from 'antd';
-import ajax from 'utils/request';
+import ajax from 'utils/ajax';
 import './index.less';
 const Dragger = Upload.Dragger;
 
@@ -23,7 +23,6 @@ class Home extends React.Component {
       },
       onChange(info) {
         if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList);
         }
         if (info.file.status === 'done') {
           message.success(info.file.response.message)

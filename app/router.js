@@ -11,4 +11,5 @@ module.exports = (app) => {
   router.get('/',html);
   router.post('/system/api/issue/file',business.unpack);//
   router.post('/system/api/user/reg',business.reg);//
+  router.get('/system/api/app/list',business.getList) 
 }

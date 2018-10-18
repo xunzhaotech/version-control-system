@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
+import ajax from 'utils/ajax';
 import './index.less';
 const { Column, ColumnGroup } = Table;
 const data = [{
@@ -32,14 +33,33 @@ class AppList extends Component {
     
     };
   }
+
+  componentDidMount() {
+    this.getAppList();
+  }
+
+  async getAppList() {
+    let res = await ajax('getAppList', {
+      pageSize: 10,
+      pageNum: 1
+    });
+    this.setState({ dataSource: res.data });
+  }
+  
   render() {
     return (
       <div className='app-list'>
-        <Table dataSource={data}>
-          <Column title="应用名称" dataIndex="appName" key="appName" />
+        <Table dataSource={this.state.dataSource} rowkey='_id'>
+          <Column title="应用名称" dataIndex="name" key="name" />
           <Column title="创建时间" dataIndex="createTime" key="createTime" />
-          <Column title="更新时间" dataIndex="updateTime" key="updateTime" />
-          <Column title="发布人" dataIndex="name" key="name" />
+          <Column title="pid" dataIndex="pid" key="pid" />
+          <Column title="状态" dataIndex="status" key="status" render={(text, record) => {
+            return (
+              text == 0 ? '停止' : '启动'
+            )
+          }}/>
+          {/* <Column title="更新时间" dataIndex="updateTime" key="updateTime" /> */}
+          {/* <Column title="发布人" dataIndex="name" key="name" /> */}
           <Column title="版本" dataIndex="version" key="version" render={(text) => {
             return (
               <Tag color="green">{text}</Tag>

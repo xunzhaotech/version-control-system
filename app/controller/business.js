@@ -1,8 +1,9 @@
 const config = require('../../config/config.default');
 const system = require('../service/system');
 const { reg } = require('../service/user');
+const { appList } = require('../service/app-list');
 const path = require('path');
-const { getPath } = require('../tool/index');
+const { getPath } = require('../tool');
 
 
 /**
@@ -13,7 +14,6 @@ const { getPath } = require('../tool/index');
  */
 exports.unpack = async (ctx) => {
   const url = await getPath(ctx);
-
   ctx.body = await system.unpack(
     ctx.req,
     url
@@ -30,6 +30,18 @@ exports.reg = async (ctx) => {
 
   ctx.body = await reg(
     ctx.req,
+    url
+  );
+}
+
+/**
+ * @api /system/api/app/list
+ * @param {*上下文} ctx 
+ */
+exports.getList = async (ctx) => {
+  const url = await getPath(ctx);
+  ctx.body = await appList(
+    ctx,
     url
   );
 }
