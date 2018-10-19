@@ -18,6 +18,8 @@
 
 * 8、使用markfile进行前端脚手架安装、打包。
 
+
+
 # 后端需求：
 
 ## 文件解析：
@@ -30,3 +32,48 @@
 
 * 4、通知前端部署成功	
   egg服务器日志生产环境打印日志-
+
+
+## 接口
+
+``` javascript
+/**解压
+ * @api /system/api/issue/file
+ * @param {file}
+ * @method post
+ *   
+ */
+exports.unpack = async (ctx) => {
+  const url = await getPath(ctx);
+  ctx.body = await system.unpack(
+    ctx.req,
+    url
+  );
+}
+
+/**注册
+ * @api /system/api/user/reg
+ * @param {Func} ctx 
+ * @method POST
+ */
+exports.reg = async (ctx) => {
+  const url = await getPath(ctx);
+
+  ctx.body = await reg(
+    ctx.req,
+    url
+  );
+}
+
+/**应用列表
+ * @api /system/api/app/list
+ * @param {*上下文} ctx 
+ */
+exports.getList = async (ctx) => {
+  const url = await getPath(ctx);
+  ctx.body = await appList(
+    ctx,
+    url
+  );
+}
+```
