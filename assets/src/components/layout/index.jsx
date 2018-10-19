@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import './index.less';
 import menuConfig from 'config/menu.js';
