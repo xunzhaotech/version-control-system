@@ -18,6 +18,10 @@
 
 * 8、使用markfile进行前端脚手架安装、打包。
 
+![数据统计](https://github.com/baiyuze/version-control-system/blob/master/image/1.png)
+![应用列表](https://github.com/baiyuze/version-control-system/blob/master/image/2.png)
+![应用部署](https://github.com/baiyuze/version-control-system/blob/master/image/3.png)
+![日志服务](https://github.com/baiyuze/version-control-system/blob/master/image/4.png)
 
 
 # 后端需求：
