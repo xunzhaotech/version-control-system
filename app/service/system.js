@@ -7,7 +7,7 @@ const formidable = require("formidable");
 const { spawn, fork, exec } = require('child_process');
 const sendToWormhole = require('stream-wormhole');
 const config = require('../../config/config.default');
-const { serverInfo } = require('../tool/model.js');
+const { appInfo } = require('../tool/model.js');
 
 //解决文件上传
 let fileUpload = (req) => {
@@ -22,7 +22,7 @@ let fileUpload = (req) => {
 /** 开始解压文件
 * @param { fileName, versionPath, version, systemName}
 * @return null;
-* 
+*
 */
 let startFileUnpack = async (fileName, versionPath, version, systemName) => {
  return new Promise((resolve, reject) => {
@@ -32,11 +32,11 @@ let startFileUnpack = async (fileName, versionPath, version, systemName) => {
    unPack.stdout.on('data', (data) => {
      console.log(`${data}`);
    });
-   
+
    unPack.stderr.on('data', (data) => {
      console.log(`${data}`);
    });
-   
+
    unPack.on('close', (code) => {
     resolve();
    });
@@ -53,13 +53,13 @@ let startIssue = (versionPath,fileName, version) => {
     unPack.stdout.on('data', (data) => {
       console.log(`${data}`);
     });
-    
+
     unPack.stderr.on('data', (data) => {
       console.log(`${data}`);
     });
     unPack.on('close', (code) => {
       console.log('当前版本已部署');
-      serverInfo.create({
+      appInfo.create({
         version: version,
         name: fileName,
         pid: pid,
@@ -78,10 +78,9 @@ let startIssue = (versionPath,fileName, version) => {
 function stopServer() {
   return new Promise((resolve) => {
     //查询当前正在运行部署的版本pid
-    serverInfo.findOne({},null,{ sort: {createTime: -1} }, (err, data) => {
+    appInfo.findOne({},null,{ sort: {createTime: -1} }, (err, data) => {
       if(!err) {
         let pid = data.pid;
-        console.log(pid,'-------------');
         try {
           process.kill(pid,(err) => {
             resolve();
@@ -89,7 +88,7 @@ function stopServer() {
         } catch (error) {
           resolve();
         }
-        
+
       }
     })
   });
@@ -147,4 +146,3 @@ exports.unpack = async (req, url) => {
     };
   }
 }
-

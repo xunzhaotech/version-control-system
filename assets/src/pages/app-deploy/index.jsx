@@ -13,6 +13,11 @@ class Home extends React.Component {
   startIssue() {
   }
 
+  async componentDidMount() {
+    let res = await ajax('getServerInfo');
+    console.log(res,'---')
+  }
+
   render() {
     const props = {
       name: 'file',
@@ -56,9 +61,9 @@ class Home extends React.Component {
           <p>
             <label className='card-label' htmlFor="">DNS：</label>
             <span>255.255.255.0</span>
-          </p>        
+          </p>
         </Card>
-      </div>  
+      </div>
     );
   }
 }

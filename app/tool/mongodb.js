@@ -2,7 +2,7 @@
 const config = require('../../config/config.default');
 const mongoose = require('mongoose');
 
-mongoose.connect(`${config.mongodb.url}/${config.mongodb.name}`);
+mongoose.connect(`${config.mongodb.url}/${config.mongodb.name}`,{useNewUrlParser: true});
 
 mongoose.connection.once("open", (err) => {
   if(!err) {

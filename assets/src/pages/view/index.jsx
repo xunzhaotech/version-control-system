@@ -19,8 +19,8 @@ class View extends Component {
     return (
       <div className='view-content'>
         <div className='data-line'>
-          <h3 style={{textAlign: 'center'}}>最近7天访问量统计</h3>
-          <div className='charts-layout'> 
+          <h3 style={{textAlign: 'center'}}>最近一周访问量统计</h3>
+          <div className='charts-layout'>
             <Charts />
           </div>
         </div>

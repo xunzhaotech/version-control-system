@@ -6,8 +6,6 @@ import moment from 'moment';
 moment.locale('zh-cn');
 import './index.less';
 const { RangePicker } = DatePicker;
-
-
 const Option = Select.Option;
 
 class LogServer extends Component {
@@ -36,7 +34,7 @@ class LogServer extends Component {
             this.state.selectValue == 0 ? <RangePicker locale={locale}/> : null
           }
           <div className='log-switch'>
-            <label>持续刷新</label> 
+            <label>持续刷新</label>
             <Switch checked={this.state.checked} onChange={this.onChangeSwich.bind(this)}/>
           </div>
 
