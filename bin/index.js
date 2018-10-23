@@ -12,6 +12,7 @@ if(cluster.isMaster) {
     url: path.join(process.cwd(), 'assets/webpack.config.js'), //webpack配置地址
     configUrl: path.join(process.cwd(), 'config/config.default.js') //默认读取config/config.default.js
   });
+
 }
 
 // 启动angel服务
@@ -21,3 +22,4 @@ if(cluster.isWorker) {
     configUrl: path.join(process.cwd(), 'config/config.default.js') //默认读取config/config.default.js
   })
 }
+  

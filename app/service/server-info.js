@@ -44,6 +44,7 @@ exports.getServerRAM = async (ctx, url) => {
     limit: Number(params.pageSize),
     skip: params.pageSize * (params.pageNum - 1)
   });
+  ctx.logger.debug('我是一个小测试');
   return {
     code: 200,
     data,
