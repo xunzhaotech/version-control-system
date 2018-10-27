@@ -81,7 +81,7 @@ exports.getServerRAM = async (ctx) => {
 }
 
 /**
- * [getServerRAM 获取服务器每小时内存信息]
+ * [getServerRAM 获取服务器日志]
  * @method getServerLog
  * @param  {[type]}     ctx [koa-router]
  * @return {Promise}        [description]

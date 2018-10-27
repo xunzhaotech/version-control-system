@@ -112,4 +112,19 @@ exports.getServerRAM = async (ctx) => {
     url
   );
 }
+
+/**
+ * [getServerRAM 获取服务器日志]
+ * @method getServerLog
+ * @param  {[type]}     ctx [koa-router]
+ * @return {Promise}        [description]
+ */
+exports.getServerLog = async (ctx) => {
+  const url = await getPath(ctx);
+  ctx.body = await getServerLog(
+    ctx,
+    url
+  );
+}
+
 ```
