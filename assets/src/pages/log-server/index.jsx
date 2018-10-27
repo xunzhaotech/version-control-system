@@ -4,6 +4,7 @@ import 'moment/locale/zh-cn';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 moment.locale('zh-cn');
+import ajax from 'utils/ajax';
 import './index.less';
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -22,6 +23,16 @@ class LogServer extends Component {
   onChangeSelect(value) {
     this.setState({ selectValue: value });
   }
+  componentDidMount() {
+    this.getLogInfo();
+  }
+  async getLogInfo() {
+    let res = await ajax('getLogInfo', {
+      type: "1",
+      time: '2018-10-27-16-26'
+    });
+    this.setState({ logInfo: res.data });
+  }
   render() {
     return (
       <div className='log-server'>
@@ -39,7 +50,7 @@ class LogServer extends Component {
           </div>
 
         </div>
-        <div className='log-content'>{this.state.logInfo}</div>
+        <div style={{whiteSpace: 'pre-wrap'}} className='log-content' >{this.state.logInfo}</div>
       </div>
     )
   }
