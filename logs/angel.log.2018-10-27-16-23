@@ -1,0 +1,10 @@
+[2018-10-27T16:23:18.705] [DEBUG] default - 123123
+[2018-10-27T16:23:18.725] [INFO] default - [32mangel GET[39m  / -  [32m19ms[39m
+[2018-10-27T16:23:19.370] [DEBUG] default - 123123
+[2018-10-27T16:23:19.394] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m24ms[39m
+[2018-10-27T16:23:53.009] [DEBUG] default - 123123
+[2018-10-27T16:23:53.033] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m24ms[39m
+[2018-10-27T16:23:53.858] [DEBUG] default - 123123
+[2018-10-27T16:23:53.876] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m18ms[39m
+[2018-10-27T16:23:54.705] [DEBUG] default - 123123
+[2018-10-27T16:23:54.721] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m16ms[39m

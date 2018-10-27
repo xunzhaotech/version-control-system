@@ -1,0 +1,2 @@
+[2018-10-27T16:52:10.026] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27 -  [32m0ms[39m
+[2018-10-27T16:52:43.549] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27 -  [32m4ms[39m

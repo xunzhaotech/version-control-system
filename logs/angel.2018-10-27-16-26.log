@@ -1,0 +1,16 @@
+[2018-10-27T16:26:17.293] [DEBUG] default - 123123
+[2018-10-27T16:26:17.309] [INFO] default - [32mangel GET[39m  / -  [32m16ms[39m
+[2018-10-27T16:26:17.910] [DEBUG] default - 123123
+[2018-10-27T16:26:17.938] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m28ms[39m
+[2018-10-27T16:26:26.417] [DEBUG] default - 123123
+[2018-10-27T16:26:26.441] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m24ms[39m
+[2018-10-27T16:26:27.339] [DEBUG] default - 123123
+[2018-10-27T16:26:27.340] [INFO] default - [32mangel GET[39m  / -  [32m1ms[39m
+[2018-10-27T16:26:28.755] [DEBUG] default - 123123
+[2018-10-27T16:26:28.772] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m17ms[39m
+[2018-10-27T16:26:29.224] [DEBUG] default - 123123
+[2018-10-27T16:26:29.224] [INFO] default - [32mangel GET[39m  / -  [32m0ms[39m
+[2018-10-27T16:26:29.770] [DEBUG] default - 123123
+[2018-10-27T16:26:29.771] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m1ms[39m
+[2018-10-27T16:26:41.757] [DEBUG] default - 123123
+[2018-10-27T16:26:41.772] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m15ms[39m
