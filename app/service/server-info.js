@@ -5,7 +5,7 @@ const path = require('path');
 const os = require('os');
 
 /**
- * [getServerInfo description]
+ * [getServerInfo 系统各项指标]
  * @method getServerInfo
  * @param  {[type]}      ctx [koa-router ctx]
  * @param  {[type]}      url [访问路径]
@@ -31,7 +31,7 @@ exports.getServerInfo = async (ctx, url) => {
 }
 
 /**
- * [getServerRAM ]
+ * [getServerRAM ] 系统的内存讯息
  * @method getServerRAM
  * @param  {[type]}     ctx [description]
  * @param  {[type]}     url [description]

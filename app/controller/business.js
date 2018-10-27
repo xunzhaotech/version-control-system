@@ -3,6 +3,7 @@ const system = require('../service/system');
 const { reg } = require('../service/user');
 const { appList } = require('../service/app-list');
 const { getServerInfo, getServerRAM } = require('../service/server-info');
+const { getServerLog } = require('../service/server-log');
 const path = require('path');
 const { getPath } = require('../tool');
 
@@ -74,6 +75,20 @@ exports.getServerInfo = async (ctx) => {
 exports.getServerRAM = async (ctx) => {
   const url = await getPath(ctx);
   ctx.body = await getServerRAM(
+    ctx,
+    url
+  );
+}
+
+/**
+ * [getServerRAM 获取服务器每小时内存信息]
+ * @method getServerLog
+ * @param  {[type]}     ctx [koa-router]
+ * @return {Promise}        [description]
+ */
+exports.getServerLog = async (ctx) => {
+  const url = await getPath(ctx);
+  ctx.body = await getServerLog(
     ctx,
     url
   );

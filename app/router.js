@@ -14,4 +14,5 @@ module.exports = (app) => {
   router.get('/system/api/app/list',business.getList)
   router.get('/system/api/server/info',business.getServerInfo)
   router.get('/system/api/server/RAM',business.getServerRAM)
+  router.get('/system/api/server/log',business.getServerLog)
 }
