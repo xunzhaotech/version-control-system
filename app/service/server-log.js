@@ -20,15 +20,21 @@ exports.getServerLog= async (ctx, url) => {
 	let time = params.time ? params.time : moment().format('YYYY-MM-DD');
 	let appName = params.appName;
 	let logsPath = path.join(process.cwd(), `logs`);
-	let logName = `angel.${time}.log`;
+	let logName = null;
 	let logInfo = Buffer.from('');
 	let logData = null;
 	if(type == 1) {
+		logName = `angel.${time}.log`;
+	} else {
+		logName = `angel.log`;
+	}
+
+	if(type == 2) {
 		function readLogs() {
 			return new Promise((resolve) => {
 				let rl = readline(path.join(process.cwd(), `logs/${logName}`));
 				rl.on('line', (line, lineCount, byteCount) => {
-					logInfo = Buffer.concat([Buffer.from(`${line}\n`), logInfo]);
+					logInfo = Buffer.concat([logInfo, Buffer.from(`${line}\n`)]);
 				})
 				rl.on('end', function(data) {
 					resolve(logInfo);
