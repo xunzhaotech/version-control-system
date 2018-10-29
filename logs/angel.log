@@ -168,3 +168,7 @@
 [2018-10-29T21:49:12.736] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2&time=2018-10-27-16-26 -  [32m2ms[39m
 [2018-10-29T21:49:19.528] [INFO] default - [32mangel GET[39m  / -  [32m0ms[39m
 [2018-10-29T21:49:20.429] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2&time=2018-10-27-16-26 -  [32m2ms[39m
+[2018-10-29T23:01:28.738] [INFO] default - [32mangel GET[39m  / -  [32m16ms[39m
+[2018-10-29T23:01:29.663] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2&time=2018-10-27-16-26 -  [32m11ms[39m
+[2018-10-30T00:44:10.690] [INFO] default - [32mangel GET[39m  / -  [32m1ms[39m
+[2018-10-30T00:44:11.581] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2&time=2018-10-27-16-26 -  [32m10ms[39m

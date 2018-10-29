@@ -21,7 +21,7 @@ class LogServer extends Component {
   onChangeSwich(checked) {
     this.setState({ checked },() => {
       if(this.state.checked) {
-        this.time = setInterval(this.getLogInfo.bind(this), 2000);
+        this.time = setInterval(this.getLogInfo.bind(this), 1000 * 60 * 5);
       } else {
         clearInterval(this.time);
       }
