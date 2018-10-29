@@ -60,3 +60,9 @@
 [2018-10-27T20:00:08.987] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27-16-26 -  [32m1ms[39m
 [2018-10-27T20:00:29.671] [INFO] default - [32mangel GET[39m  / -  [32m0ms[39m
 [2018-10-27T20:00:30.525] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27-16-26 -  [32m1ms[39m
+[2018-10-28T02:29:07.534] [INFO] default - [32mangel GET[39m  / -  [32m28ms[39m
+[2018-10-28T02:29:11.591] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m185ms[39m
+[2018-10-28T02:29:19.098] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27-16-26 -  [32m4ms[39m
+[2018-10-28T02:33:00.412] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m80ms[39m
+[2018-10-28T02:33:08.818] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m2ms[39m
+[2018-10-28T02:33:10.661] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1&time=2018-10-27-16-26 -  [32m1ms[39m
