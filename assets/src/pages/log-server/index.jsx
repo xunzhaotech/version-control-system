@@ -5,6 +5,7 @@ import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 moment.locale('zh-cn');
 import ajax from 'utils/ajax';
+import Scroll from 'components/scroll';
 import './index.less';
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -18,7 +19,16 @@ class LogServer extends Component {
   }
 
   onChangeSwich(checked) {
-    this.setState({ checked });
+    this.setState({ checked },() => {
+      if(this.state.checked) {
+        this.time = setInterval(this.getLogInfo.bind(this), 2000);
+      } else {
+        clearInterval(this.time);
+      }
+    });
+  }
+  componentWillUnmount() {
+    clearInterval(this.time);
   }
   onChangeSelect(value) {
     this.setState({ selectValue: value });
@@ -28,10 +38,17 @@ class LogServer extends Component {
   }
   async getLogInfo() {
     let res = await ajax('getLogInfo', {
-      type: "1",
+      type: "2",
       time: '2018-10-27-16-26'
     });
-    this.setState({ logInfo: res.data });
+    this.setState({ logInfo: res.data }, () => {
+      this.scrollDeep();
+    });
+  }
+  //滚动条默认滚到底部
+  scrollDeep() {
+    let logs = document.querySelector('.log-content');
+    logs.scrollTop = logs.scrollHeight;
   }
   render() {
     return (
