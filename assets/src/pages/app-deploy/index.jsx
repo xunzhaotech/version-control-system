@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Upload, message, Button, Skeleton, Switch, Card, Icon, Avatar } from 'antd';
+import { Upload, message, Card, Icon } from 'antd';
 import ajax from 'utils/ajax';
 import './index.less';
 const Dragger = Upload.Dragger;
@@ -8,6 +8,9 @@ const Dragger = Upload.Dragger;
 class Home extends React.Component {
   constructor() {
     super();
+    this.state = {
+      machineInfo: {}
+    }
   }
 
   startIssue() {
@@ -15,9 +18,10 @@ class Home extends React.Component {
 
   async componentDidMount() {
     let res = await ajax('getServerInfo');
-    console.log(res,'---')
+    this.setState({ machineInfo: res.data });
   }
 
+  //发布
   render() {
     const props = {
       name: 'file',
@@ -36,6 +40,7 @@ class Home extends React.Component {
         }
       },
     };
+    let machineInfo = this.state.machineInfo;
     return (
       <div className="app-deploy">
         <h3>发布</h3>
@@ -45,22 +50,31 @@ class Home extends React.Component {
           </p>
           <p className="ant-upload-text">单击或拖动文件到此区域进行上传</p>
         </Dragger>
-        <Card title='配置信息' hoverable={true} style={{ width: 300, marginTop: 16 }} loading={false}>
+        <Card title='配置信息' hoverable={true} style={{ width: 500, marginTop: 16 }} loading={false}>
           <p>
-            <label className='card-label' htmlFor="">IP：</label>
-            <span>106.14.154.107</span>
+            <label className='card-label' htmlFor="">网络：</label>
+            <span>{machineInfo.network && machineInfo.network.eno1[0].address}</span>
           </p>
           <p>
             <label className='card-label' htmlFor="">CPU：</label>
-            <span>2核</span>
+            <span>{machineInfo.cpus && machineInfo.cpus.length}核 </span>
+            <span>{machineInfo.cpus && machineInfo.cpus[0].model}</span>
           </p>
           <p>
-            <label className='card-label' htmlFor="">SYSTEM：</label>
-            <span>Centos 7.3</span>
+            <label className='card-label' htmlFor="">架构：</label>
+            <span>{machineInfo.arch}</span>
           </p>
           <p>
-            <label className='card-label' htmlFor="">DNS：</label>
-            <span>255.255.255.0</span>
+            <label className='card-label' htmlFor="">内存总量：</label>
+            <span>{(machineInfo.totalmem / 1024 / 1024 / 1024).toFixed(2)} GB</span>
+          </p>
+          <p>
+            <label className='card-label' htmlFor="">平台：</label>
+            <span>{machineInfo.platform}</span>
+          </p>
+          <p>
+            <label className='card-label' htmlFor="">主机名：</label>
+            <span>{machineInfo.hostName}</span>
           </p>
         </Card>
       </div>

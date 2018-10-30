@@ -16,9 +16,10 @@ export default [
     title: '日志服务',
     key: 'log-server',
     icon: 'file-text'
-  },{
-    title: '远程连接',
-    key: 'remote-connection',
-    icon: 'link'
   }
+  // ,{
+  //   title: '远程连接',
+  //   key: 'remote-connection',
+  //   icon: 'link'
+  // }
 ]

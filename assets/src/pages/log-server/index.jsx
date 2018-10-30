@@ -6,7 +6,6 @@ import moment from 'moment';
 moment.locale('zh-cn');
 import ajax from 'utils/ajax';
 import './index.less';
-const { RangePicker } = DatePicker;
 const Option = Select.Option;
 
 class LogServer extends Component {
@@ -30,15 +29,14 @@ class LogServer extends Component {
     clearInterval(this.time);
   }
   onChangeSelect(value) {
-    this.setState({ selectValue: value });
-  }
-  componentDidMount() {
-    this.getLogInfo();
+    this.setState({ selectValue: value }, () => {
+      this.getLogInfo();
+    });
   }
   async getLogInfo() {
     let res = await ajax('getLogInfo', {
-      type: "2",
-      time: '2018-10-27-16-26'
+      type: this.state.selectValue,
+      time: this.state.dateString
     });
     this.setState({ logInfo: res.data }, () => {
       this.scrollDeep();
@@ -49,16 +47,22 @@ class LogServer extends Component {
     let logs = document.querySelector('.log-content');
     logs.scrollTop = logs.scrollHeight;
   }
+  //日期选择
+  onChangeDatePicker(date, dateString) {
+    this.setState({dateString}, () => {
+      this.getLogInfo();
+    });
+  }
   render() {
     return (
       <div className='log-server'>
         <div className='log-server-header'>
           <Select value={this.state.selectValue} placeholder='请选择日志类型' onChange={this.onChangeSelect.bind(this)} className='log-type'>
-            <Option key={0}>历史日志</Option>
-            <Option key={1}>在线日志</Option>
+            <Option key={1}>历史日志</Option>
+            <Option key={2}>在线日志</Option>
           </Select>
           {
-            this.state.selectValue == 0 ? <RangePicker locale={locale}/> : null
+            this.state.selectValue == 1 ? <DatePicker locale={locale} onChange={this.onChangeDatePicker.bind(this)}/> : null
           }
           <div className='log-switch'>
             <label>持续刷新</label>

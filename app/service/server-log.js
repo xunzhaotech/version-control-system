@@ -16,13 +16,13 @@ const moment = require("moment");
 exports.getServerLog= async (ctx, url) => { 
   let req = ctx.request;
 	let params = req.query;
-	let type = params.type;
+	let type = params.type ? params.type : 1;
 	let time = params.time ? params.time : moment().format('YYYY-MM-DD');
 	let appName = params.appName;
 	let logsPath = path.join(process.cwd(), `logs`);
 	let logName = null;
 	let logInfo = Buffer.from('');
-	let logData = null;
+	let logData = '';
 	if(type == 1) {
 		logName = `angel.${time}.log`;
 	} else {
