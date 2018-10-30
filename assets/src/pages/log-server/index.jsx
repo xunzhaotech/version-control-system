@@ -5,6 +5,7 @@ import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 moment.locale('zh-cn');
 import ajax from 'utils/ajax';
+import Scroll from 'components/scroll';
 import './index.less';
 const Option = Select.Option;
 
@@ -19,7 +20,7 @@ class LogServer extends Component {
   onChangeSwich(checked) {
     this.setState({ checked },() => {
       if(this.state.checked) {
-        this.time = setInterval(this.getLogInfo.bind(this), 2000);
+        this.time = setInterval(this.getLogInfo.bind(this), 1000 * 60 * 5);
       } else {
         clearInterval(this.time);
       }

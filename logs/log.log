@@ -1,0 +1,5 @@
+[2018-10-24T01:38:40.519] [INFO] default - [32mangel GET[39m  / -  [32m20ms[39m
+[2018-10-24T01:41:11.573] [INFO] default - [32mangel POST[39m  /system/api/server/RAM -  [32m1ms[39m
+[2018-10-24T01:41:45.384] [INFO] default - [32mangel POST[39m  /system/api/server/RAM?pageSize=10&pageNum=1 -  [32m0ms[39m
+[2018-10-24T01:42:08.351] [INFO] default - [32mangel POST[39m  /system/api/server/info?pageSize=10&pageNum=1 -  [32m0ms[39m
+[2018-10-24T01:42:24.500] [INFO] default - [32mangel GET[39m  /system/api/server/info?pageSize=10&pageNum=1 -  [32m1ms[39m
