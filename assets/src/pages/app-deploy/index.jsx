@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'dva';
 import { Upload, message, Card, Icon } from 'antd';
 import ajax from 'utils/ajax';
 import './index.less';
@@ -53,7 +52,7 @@ class Home extends React.Component {
         <Card title='配置信息' hoverable={true} style={{ width: 500, marginTop: 16 }} loading={false}>
           <p>
             <label className='card-label' htmlFor="">网络：</label>
-            <span>{machineInfo.network && machineInfo.network.eno1[0].address}</span>
+            <span>{machineInfo.IP}</span>
           </p>
           <p>
             <label className='card-label' htmlFor="">CPU：</label>

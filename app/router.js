@@ -9,7 +9,7 @@ const business  = require('./controller/business');
 module.exports = (app) => {
   let { router, config } = app;
   router.get('/',html);
-  router.post('/system/api/issue/file',business.unpack);
+  router.post('/system/api/issue/file',business.serverRelease);
   router.post('/system/api/user/reg',business.reg);
   router.get('/system/api/app/list',business.getList)
   router.get('/system/api/server/info',business.getServerInfo)

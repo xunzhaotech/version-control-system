@@ -109,6 +109,7 @@ let config = {
     extensions: [".js", ".jsx", ".json"]
   },
   mode: process.env.NODE_ENV,
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     new webpack.ProvidePlugin({
       antd: "antd",

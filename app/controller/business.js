@@ -1,5 +1,5 @@
 const config = require('../../config/config.default');
-const system = require('../service/system');
+const serverRelease = require('../service/server-issue');
 const { reg } = require('../service/user');
 const { appList } = require('../service/app-list');
 const { getServerInfo, getServerRAM } = require('../service/server-info');
@@ -9,15 +9,15 @@ const { getPath } = require('../tool');
 
 
 /**
- * [unpack 文件上传，解压]
+ * [unpack 文件上传，解压, 发布]
  * @method unpack
  * @param  {[type]}  ctx [koa-router]
  * @return {Promise}     [description]
  */
-exports.unpack = async (ctx) => {
+exports.serverRelease = async (ctx) => {
   const url = await getPath(ctx);
-  ctx.body = await system.unpack(
-    ctx.req,
+  ctx.body = await serverRelease(
+    ctx,
     url
   );
 }
