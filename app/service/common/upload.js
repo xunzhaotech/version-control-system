@@ -14,7 +14,7 @@ async function uploadFile (req, url) {
   const form = new formidable.IncomingForm();
   return new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
-      if(err) {
+      if(err) { 
         reject(err);
       } else {
         resolve({ fields, files })
