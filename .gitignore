@@ -7,5 +7,6 @@ node_modules/
 assets/node_modules/
 app/public/
 run/
+out/
 system/
 coverage/
