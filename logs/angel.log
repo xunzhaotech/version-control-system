@@ -402,3 +402,16 @@
 [2018-11-14T11:46:44.448] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m4ms[39m
 [2018-11-14T11:46:46.814] [INFO] default - [32mangel POST[39m  /system/api/issue/file/ -  [32m163ms[39m
 [2018-11-14T11:47:58.563] [INFO] default - [32mangel POST[39m  /system/api/issue/file/ -  [32m162ms[39m
+[2018-11-14T23:48:14.403] [INFO] default - [32mangel GET[39m  / -  [32m21ms[39m
+[2018-11-14T23:48:15.601] [INFO] default - [32mangel GET[39m  /system/api/server/RAM?pageNum=1&pageSize=24 -  [32m28ms[39m
+[2018-11-14T23:48:38.279] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m18ms[39m
+[2018-11-14T23:48:39.627] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m1ms[39m
+[2018-11-14T23:48:45.765] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1 -  [32m1ms[39m
+[2018-11-14T23:48:48.689] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2 -  [32m17ms[39m
+[2018-11-14T23:48:50.398] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1 -  [32m0ms[39m
+[2018-11-14T23:48:58.753] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2 -  [32m12ms[39m
+[2018-11-14T23:49:00.552] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=1 -  [32m0ms[39m
+[2018-11-14T23:49:04.998] [INFO] default - [32mangel GET[39m  /system/api/server/log?type=2 -  [32m6ms[39m
+[2018-11-14T23:49:23.846] [INFO] default - [32mangel GET[39m  /system/api/server/RAM?pageNum=1&pageSize=24 -  [32m26ms[39m
+[2018-11-14T23:49:25.897] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m19ms[39m
+[2018-11-14T23:49:26.554] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m1ms[39m
