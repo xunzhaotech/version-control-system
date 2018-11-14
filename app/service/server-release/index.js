@@ -4,8 +4,8 @@ const uploadFile = require('../common/upload');
 const zlib = require('zlib');
 const fs = require("fs");
 const path = require("path");
-const decompress = require('decompress');
-const decompressTargz = require('decompress-targz');
+// const decompress = require('decompress');
+// const decompressTargz = require('decompress-targz');
 
 /**
  * 
@@ -50,13 +50,13 @@ async function serverRelease(ctx, url) {
     const stream = fs.createReadStream(file.path);
     const writeStream = fs.createWriteStream(path.join(versionPath, `${fileName}.gz`));
     await awaitWriteStream(stream.pipe(writeStream));
-    decompress(`${versionPath}\${fileName}.gz`, 'dist', {
-      plugins: [
-        decompressTargz()
-      ]
-    }).then(() => {
-        console.log('文件解压完成');
-    });
+    // decompress(`${versionPath}\${fileName}.gz`, 'dist', {
+    //   plugins: [
+    //     decompressTargz()
+    //   ]
+    // }).then(() => {
+    //     console.log('文件解压完成');
+    // });
   } catch (error) {
     return {
       code: 400,
