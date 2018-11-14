@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   listen: {
-    port: 7001
+    port: 7002
   },
   mongodb: {
     url: 'mongodb://106.14.154.107:27017',
@@ -24,7 +24,7 @@ module.exports = {
   compress: { threshold: 2048 },//koa-compress 配置gizp
   webpack: {
     listen: {
-      port: 8888
+      port: 9999
     },
     options: {
       // all options optional

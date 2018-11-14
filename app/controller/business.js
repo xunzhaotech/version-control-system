@@ -1,5 +1,5 @@
 const config = require('../../config/config.default');
-const serverRelease = require('../service/server-issue');
+const serverRelease = require('../service/server-release');
 const { reg } = require('../service/user');
 const { appList } = require('../service/app-list');
 const { getServerInfo, getServerRAM } = require('../service/server-info');
