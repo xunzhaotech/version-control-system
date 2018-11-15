@@ -5,7 +5,7 @@ node_modules/
 # production
 
 assets/node_modules/
-app/public/
+app/static/
 run/
 out/
 system/
