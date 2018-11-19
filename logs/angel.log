@@ -415,3 +415,6 @@
 [2018-11-14T23:49:23.846] [INFO] default - [32mangel GET[39m  /system/api/server/RAM?pageNum=1&pageSize=24 -  [32m26ms[39m
 [2018-11-14T23:49:25.897] [INFO] default - [32mangel GET[39m  /system/api/app/list?pageSize=10&pageNum=1 -  [32m19ms[39m
 [2018-11-14T23:49:26.554] [INFO] default - [32mangel GET[39m  /system/api/server/info -  [32m1ms[39m
+[2018-11-19T20:41:15.305] [INFO] default - [32mangel GET[39m  / -  [32m22ms[39m
+[2018-11-19T20:41:29.911] [INFO] default - [32mangel GET[39m  /system/api/server/RAM?pageNum=1&pageSize=24 -  [32m45ms[39m
+[2018-11-19T20:41:30.184] [INFO] default - [32mangel GET[39m  /favicon.ico -  [32m3ms[39m

@@ -9,6 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node bin/index.js",
+    "ii": "cnpm i && cd assets && cnpm i",
     "package": "cd assets && mv node_modules ../../ && cd ../ && tar -zcvf ./out/system_0.01.gz . && cd ../ && mv node_modules ./koa-system-issue/assets"
   },
   "author": "",
